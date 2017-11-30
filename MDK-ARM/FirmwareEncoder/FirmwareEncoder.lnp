@@ -13,6 +13,7 @@
 "firmwareencoder\stm32f1xx_hal_flash.o"
 "firmwareencoder\stm32f1xx_hal.o"
 "firmwareencoder\stm32f1xx_hal_rcc.o"
+"firmwareencoder\stm32f1xx_hal_uart.o"
 "firmwareencoder\stm32f1xx_hal_msp.o"
 "firmwareencoder\main.o"
 "firmwareencoder\stm32f1xx_it.o"

@@ -1,5 +1,6 @@
 firmwareencoder\main.o: ../Src/main.c
 firmwareencoder\main.o: ../Inc/main.h
+firmwareencoder\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 firmwareencoder\main.o: ../Inc/stm32f1xx_hal_conf.h
 firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
@@ -23,3 +24,6 @@ firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex
 firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+firmwareencoder\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h

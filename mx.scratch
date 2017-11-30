@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>C:\Users\Lars Aeschlimann\Dropbox\01_Studium\05_Semester\04_Projektarbeit und System Engineering\01_Semesterprojekt\03_Software\03_Firmware\02_Firmware_Encoder\FirmwareEncoder\\FirmwareEncoder</ProjectName>
+<ProjectName>C:\Users\Lars Aeschlimann\Desktop\Firmwares_LR_Control\FirmwareEncoder\\FirmwareEncoder</ProjectName>
 <CMSIS>..\Drivers\CMSIS</CMSIS>
 <HAL_Driver>C:\Users\Lars Aeschlimann\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS</HAL_Driver>
 
@@ -85,6 +85,9 @@
 						</file>
 						<file>
 							<name>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c</name>
+						</file>
+						<file>
+							<name>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c</name>
 						</file>
 						<file>
 							<name>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c</name>
