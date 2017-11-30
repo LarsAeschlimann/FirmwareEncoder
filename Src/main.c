@@ -46,6 +46,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim6;
 
 UART_HandleTypeDef huart4;
 
@@ -54,8 +55,7 @@ UART_HandleTypeDef huart4;
 unsigned int cnt = 0;
 unsigned int cnt_ccw = 0;
 unsigned int cnt_cw = 0;
-char contrseq1[4] = {0x01,0x02,0x04,0x09};
-char contrseq2[4] = {0x00,0x00,0x01,0x03};
+int val;
 volatile bool a1;
 volatile bool b1;
 
@@ -71,6 +71,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_UART4_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_TIM6_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -79,35 +80,35 @@ int encode(char index);
 
 /* USER CODE BEGIN 0 */
 int encode(char index){//Funktion für die Encoderauswertung
-	int val;
+	
 	switch(my_state){
 			case S0:
 				timecount = TIMECOUNT;
+			//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
 				if(a[index] == 0 && b[index] == 1)my_state = S1;
 				if(a[index] == 1 && b[index] == 0)my_state = S3;			
 			break;
 			
 			case S1:
+				
 				if(a[index] == 0 && b[index] == 0)my_state = S2;
 				if(a[index] == 1 && b[index] == 1){
 					my_state = S0;
-					if(timecount >= Time2)val = Speed3+val;
-					if(timecount >= Time1 && timecount <Time2)val = Speed2+val;
-					if(timecount <Time1)val++;
+					val--;
 				}
 			break;
 			
 			case S2:
+				
 				if(a[index] == 1 && b[index] == 0)my_state = S3;
 				if(a[index] == 0 && b[index] == 1)my_state = S1;			
 			break;
 			
 			case S3:
+				//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 				if(a[index] == 1 && b[index] == 1){
 					my_state = S0;
-					if(timecount >= Time2)val = Speed3-val;
-					if(timecount >= Time1 && timecount <Time2)val = Speed2-val;
-					if(timecount <Time1)val--;
+					val++;
 				}
 				if(a[index] == 0 && b[index] == 0)my_state = S2;
 			break;
@@ -143,9 +144,10 @@ int main(void)
   MX_GPIO_Init();
   MX_UART4_Init();
   MX_TIM3_Init();
+  MX_TIM6_Init();
 
   /* USER CODE BEGIN 2 */
-
+	HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -154,9 +156,10 @@ int main(void)
   {
 		cnt_cw = encode(Inc_magenta);
 		
-		if(HAL_GPIO_ReadPin(IncA_port_magenta, IncA_pin_magenta))HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
+		if(cnt_cw <= 10)HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
+		//if(HAL_GPIO_ReadPin(IncA_port_magenta, IncA_pin_magenta))HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
 		
-		//if(cnt_cw & 0x01)HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
+		//if(a[Inc_magenta])HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
 		//if(cnt_cw & 0x02)HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);}
 		
   /* USER CODE END WHILE */
@@ -178,9 +181,8 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -191,7 +193,7 @@ void SystemClock_Config(void)
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -221,9 +223,9 @@ static void MX_TIM3_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 23;
+  htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 50;
+  htim3.Init.Period = 0;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -240,6 +242,31 @@ static void MX_TIM3_Init(void)
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+/* TIM6 init function */
+static void MX_TIM6_Init(void)
+{
+
+  TIM_MasterConfigTypeDef sMasterConfig;
+
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = 23;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = 49;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
