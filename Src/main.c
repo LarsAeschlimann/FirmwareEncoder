@@ -42,6 +42,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -56,8 +57,7 @@ unsigned int cnt = 0;
 unsigned int cnt_ccw = 0;
 unsigned int cnt_cw = 0;
 int val;
-volatile bool a1;
-volatile bool b1;
+char sendstring[8] = "Hello";
 
 volatile bool a[19];
 volatile bool b[19];
@@ -84,7 +84,6 @@ int encode(char index){//Funktion für die Encoderauswertung
 	switch(my_state){
 			case S0:
 				timecount = TIMECOUNT;
-			//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
 				if(a[index] == 0 && b[index] == 1)my_state = S1;
 				if(a[index] == 1 && b[index] == 0)my_state = S3;			
 			break;
@@ -105,7 +104,6 @@ int encode(char index){//Funktion für die Encoderauswertung
 			break;
 			
 			case S3:
-				//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 				if(a[index] == 1 && b[index] == 1){
 					my_state = S0;
 					val++;
@@ -155,6 +153,7 @@ int main(void)
   while (1)
   {
 		cnt_cw = encode(Inc_magenta);
+		strcpy(sendstring,"cnt_cw");
 		
 		if(cnt_cw <= 10)HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
 		//if(HAL_GPIO_ReadPin(IncA_port_magenta, IncA_pin_magenta))HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
