@@ -70,25 +70,25 @@ extern volatile unsigned int timecount;
 #define Speed2	2 //Faktor 2
 #define Speed3	4 //Faktor 4
 
-#define Inc_red					0
-#define Inc_orange			1
-#define Inc_yellow			2
-#define Inc_green				3
-#define Inc_aquamarin		4
-#define Inc_blue				5
-#define Inc_violett			6
-#define Inc_magenta			7
-#define Inc_contrast		8
-#define Inc_exposure		9
-#define Inc_shadow			10
-#define Inc_lights			11
-#define Inc_black				12
-#define Inc_white				13
-#define Inc_clarity			14
-#define Inc_dynamic			15
-#define Inc_saturation	16
-#define Inc_prog				17
-#define Inc_crop				18
+#define INC_RED					0
+#define INC_ORANGE			1
+#define INC_YELLOW			2
+#define INC_GREEN				3
+#define INC_AQUA				4
+#define INC_BLUE				5
+#define INC_PURPLE			6
+#define INC_MAGENTA			7
+#define INC_CONTRAST		8
+#define INC_EXPOSURE		9
+#define INC_SHADOW			10
+#define INC_HIGHLIGHTS	11
+#define INC_BLACKS			12
+#define INC_WHITES			13
+#define INC_CLARITY			14
+#define INC_VIBRANCE		15
+#define INC_SATURATION	16
+#define INC_PROG				17
+#define INC_CROP				18
 
 
 #define IncA_pin_red					GPIO_PIN_15

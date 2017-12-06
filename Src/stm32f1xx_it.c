@@ -208,62 +208,62 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
 	
 	
-		a[Inc_red] = HAL_GPIO_ReadPin(IncA_port_red, IncA_pin_red);
-		b[Inc_red] = HAL_GPIO_ReadPin(IncB_port_red, IncB_pin_red);
+		a[INC_RED] = HAL_GPIO_ReadPin(IncA_port_red, IncA_pin_red);
+		b[INC_RED] = HAL_GPIO_ReadPin(IncB_port_red, IncB_pin_red);
 	
-		a[Inc_aquamarin] = HAL_GPIO_ReadPin(IncA_port_aquamarin, IncA_pin_aquamarin);
-		b[Inc_aquamarin] = HAL_GPIO_ReadPin(IncB_port_aquamarin, IncB_pin_aquamarin);
+		a[INC_AQUA] = HAL_GPIO_ReadPin(IncA_port_aquamarin, IncA_pin_aquamarin);
+		b[INC_AQUA] = HAL_GPIO_ReadPin(IncB_port_aquamarin, IncB_pin_aquamarin);
 	
-		a[Inc_black] = HAL_GPIO_ReadPin(IncA_port_black, IncA_pin_black);
-		b[Inc_black] = HAL_GPIO_ReadPin(IncB_port_black, IncB_pin_black);
+		a[INC_BLACKS] = HAL_GPIO_ReadPin(IncA_port_black, IncA_pin_black);
+		b[INC_BLACKS] = HAL_GPIO_ReadPin(IncB_port_black, IncB_pin_black);
 	
-		a[Inc_blue] = HAL_GPIO_ReadPin(IncA_port_blue, IncA_pin_blue);
-		b[Inc_blue] = HAL_GPIO_ReadPin(IncB_port_blue, IncB_pin_blue);
+		a[INC_BLUE] = HAL_GPIO_ReadPin(IncA_port_blue, IncA_pin_blue);
+		b[INC_BLUE] = HAL_GPIO_ReadPin(IncB_port_blue, IncB_pin_blue);
 	
-		a[Inc_yellow] = HAL_GPIO_ReadPin(IncA_port_yellow, IncA_pin_yellow);
-		b[Inc_yellow] = HAL_GPIO_ReadPin(IncB_port_yellow, IncB_pin_yellow);
+		a[INC_YELLOW] = HAL_GPIO_ReadPin(IncA_port_yellow, IncA_pin_yellow);
+		b[INC_YELLOW] = HAL_GPIO_ReadPin(IncB_port_yellow, IncB_pin_yellow);
 	
-		a[Inc_green] = HAL_GPIO_ReadPin(IncA_port_green, IncA_pin_green);
-		b[Inc_green] = HAL_GPIO_ReadPin(IncB_port_green, IncB_pin_green);
+		a[INC_GREEN] = HAL_GPIO_ReadPin(IncA_port_green, IncA_pin_green);
+		b[INC_GREEN] = HAL_GPIO_ReadPin(IncB_port_green, IncB_pin_green);
 	
-		a[Inc_clarity] = HAL_GPIO_ReadPin(IncA_port_clarity, IncA_pin_clarity);
-		b[Inc_clarity] = HAL_GPIO_ReadPin(IncB_port_clarity, IncB_pin_clarity);
+		a[INC_CLARITY] = HAL_GPIO_ReadPin(IncA_port_clarity, IncA_pin_clarity);
+		b[INC_CLARITY] = HAL_GPIO_ReadPin(IncB_port_clarity, IncB_pin_clarity);
 		
-		a[Inc_contrast] = HAL_GPIO_ReadPin(IncA_port_contrast, IncA_pin_contrast);
-		b[Inc_contrast] = HAL_GPIO_ReadPin(IncB_port_contrast, IncB_pin_contrast);
+		a[INC_CONTRAST] = HAL_GPIO_ReadPin(IncA_port_contrast, IncA_pin_contrast);
+		b[INC_CONTRAST] = HAL_GPIO_ReadPin(IncB_port_contrast, IncB_pin_contrast);
 		
-		a[Inc_crop] = HAL_GPIO_ReadPin(IncA_port_crop, IncA_pin_crop);
-		b[Inc_crop] = HAL_GPIO_ReadPin(IncB_port_crop, IncB_pin_crop);
+		a[INC_CROP] = HAL_GPIO_ReadPin(IncA_port_crop, IncA_pin_crop);
+		b[INC_CROP] = HAL_GPIO_ReadPin(IncB_port_crop, IncB_pin_crop);
 		
-		a[Inc_dynamic] = HAL_GPIO_ReadPin(IncA_port_dynamic, IncA_pin_dynamic);
-		b[Inc_dynamic] = HAL_GPIO_ReadPin(IncB_port_dynamic, IncB_pin_dynamic);
+		a[INC_VIBRANCE] = HAL_GPIO_ReadPin(IncA_port_dynamic, IncA_pin_dynamic);
+		b[INC_VIBRANCE] = HAL_GPIO_ReadPin(IncB_port_dynamic, IncB_pin_dynamic);
 		
-		a[Inc_exposure] = HAL_GPIO_ReadPin(IncA_port_exposure, IncA_pin_exposure);
-		b[Inc_exposure] = HAL_GPIO_ReadPin(IncB_port_exposure, IncB_pin_exposure);
+		a[INC_EXPOSURE] = HAL_GPIO_ReadPin(IncA_port_exposure, IncA_pin_exposure);
+		b[INC_EXPOSURE] = HAL_GPIO_ReadPin(IncB_port_exposure, IncB_pin_exposure);
 		
-		a[Inc_lights] = HAL_GPIO_ReadPin(IncA_port_lights, IncA_pin_lights);
-		b[Inc_lights] = HAL_GPIO_ReadPin(IncB_port_lights, IncB_pin_lights);
+		a[INC_HIGHLIGHTS] = HAL_GPIO_ReadPin(IncA_port_lights, IncA_pin_lights);
+		b[INC_HIGHLIGHTS] = HAL_GPIO_ReadPin(IncB_port_lights, IncB_pin_lights);
 		
-		a[Inc_magenta] = HAL_GPIO_ReadPin(IncA_port_magenta, IncA_pin_magenta);
-		b[Inc_magenta] = HAL_GPIO_ReadPin(IncB_port_magenta, IncB_pin_magenta);
+		a[INC_MAGENTA] = HAL_GPIO_ReadPin(IncA_port_magenta, IncA_pin_magenta);
+		b[INC_MAGENTA] = HAL_GPIO_ReadPin(IncB_port_magenta, IncB_pin_magenta);
 		
-		a[Inc_orange] = HAL_GPIO_ReadPin(IncA_port_orange, IncA_pin_orange);
-		b[Inc_orange] = HAL_GPIO_ReadPin(IncB_port_orange, IncB_pin_orange);
+		a[INC_ORANGE] = HAL_GPIO_ReadPin(IncA_port_orange, IncA_pin_orange);
+		b[INC_ORANGE] = HAL_GPIO_ReadPin(IncB_port_orange, IncB_pin_orange);
 		
-		a[Inc_prog] = HAL_GPIO_ReadPin(IncA_port_prog, IncA_pin_prog);
-		b[Inc_prog] = HAL_GPIO_ReadPin(IncB_port_prog, IncB_pin_prog);
+		a[INC_PROG] = HAL_GPIO_ReadPin(IncA_port_prog, IncA_pin_prog);
+		b[INC_PROG] = HAL_GPIO_ReadPin(IncB_port_prog, IncB_pin_prog);
 		
-		a[Inc_saturation] = HAL_GPIO_ReadPin(IncA_port_saturation, IncA_pin_saturation);
-		b[Inc_saturation] = HAL_GPIO_ReadPin(IncB_port_saturation, IncB_pin_saturation);
+		a[INC_SATURATION] = HAL_GPIO_ReadPin(IncA_port_saturation, IncA_pin_saturation);
+		b[INC_SATURATION] = HAL_GPIO_ReadPin(IncB_port_saturation, IncB_pin_saturation);
 		
-		a[Inc_shadow] = HAL_GPIO_ReadPin(IncA_port_shadow, IncA_pin_shadow);
-		b[Inc_shadow] = HAL_GPIO_ReadPin(IncB_port_shadow, IncB_pin_shadow);
+		a[INC_SHADOW] = HAL_GPIO_ReadPin(IncA_port_shadow, IncA_pin_shadow);
+		b[INC_SHADOW] = HAL_GPIO_ReadPin(IncB_port_shadow, IncB_pin_shadow);
 		
-		a[Inc_violett] = HAL_GPIO_ReadPin(IncA_port_violett, IncA_pin_violett);
-		b[Inc_violett] = HAL_GPIO_ReadPin(IncB_port_violett, IncB_pin_violett);
+		a[INC_PURPLE] = HAL_GPIO_ReadPin(IncA_port_violett, IncA_pin_violett);
+		b[INC_PURPLE] = HAL_GPIO_ReadPin(IncB_port_violett, IncB_pin_violett);
 		
-		a[Inc_white] = HAL_GPIO_ReadPin(IncA_port_white, IncA_pin_white);
-		b[Inc_white] = HAL_GPIO_ReadPin(IncB_port_white, IncB_pin_white);
+		a[INC_WHITES] = HAL_GPIO_ReadPin(IncA_port_white, IncA_pin_white);
+		b[INC_WHITES] = HAL_GPIO_ReadPin(IncB_port_white, IncB_pin_white);
 	
 		if(timecount>0){
 			timecount--;

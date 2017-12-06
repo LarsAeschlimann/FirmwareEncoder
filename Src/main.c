@@ -152,7 +152,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		cnt_cw = encode(Inc_magenta);
+		cnt_cw = encode(INC_MAGENTA);
 		strcpy(sendstring,"cnt_cw");
 		
 		if(cnt_cw <= 10)HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);else{HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);}
