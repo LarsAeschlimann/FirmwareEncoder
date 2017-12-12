@@ -56,7 +56,7 @@ UART_HandleTypeDef huart4;
 unsigned int cnt = 0;
 unsigned int cnt_ccw = 0;
 unsigned int cnt_cw = 0;
-int val;
+int val[19];
 char sendstring[8] = "Hello";
 
 volatile bool a[19];
@@ -93,7 +93,7 @@ int encode(char index){//Funktion für die Encoderauswertung
 				if(a[index] == 0 && b[index] == 0)my_state = S2;
 				if(a[index] == 1 && b[index] == 1){
 					my_state = S0;
-					val--;
+					val[index]--;
 				}
 			break;
 			
@@ -106,12 +106,16 @@ int encode(char index){//Funktion für die Encoderauswertung
 			case S3:
 				if(a[index] == 1 && b[index] == 1){
 					my_state = S0;
-					val++;
+					val[index]++;
 				}
 				if(a[index] == 0 && b[index] == 0)my_state = S2;
 			break;
 		}
-		return val;
+		return val[index];
+}
+
+void resetincval(char index){
+	val[index] = 0;
 }
 /* USER CODE END 0 */
 
